@@ -1,12 +1,26 @@
+# Frontend / Node
 node_modules
 dist
 dist-ssr
 *.local
 *.log
 
+# Backend / Java / Maven
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+*.jar
+*.war
+*.class
+*.log
+
+# IDEs e Ferramentas
 .vscode/*
 !.vscode/extensions.json
 .idea
+backend/.idea/
+backend/*.iml
 .DS_Store
 *.suo
 *.ntvs*

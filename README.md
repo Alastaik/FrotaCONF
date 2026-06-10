@@ -1,77 +1,74 @@
-# FrotaCONF — Sistema de Gerenciamento de Frota
+# FrotaCONF — Sistema de Gerenciamento de Frota (Premium)
 
-Sistema web para controle de frota veicular, desenvolvido com **Vite + TypeScript** e estilizado com **Bootstrap 5** via CDN.
+Sistema web completo para controle de frota veicular. O projeto foi modernizado e agora conta com uma arquitetura "Single Page Application" robusta, utilizando **React, Vite e TypeScript** no Frontend, e uma API REST segura construída com **Java Spring Boot e PostgreSQL** no Backend.
 
-## Funcionalidades
+## 🚀 Tecnologias
 
-- Dashboard com contadores dinâmicos (total, em dia, manutenção pendente)
-- Listagem de veículos em cards com status visual (badges)
-- Filtros por status na barra lateral
-- Alternância de status dos veículos (Em Dia ↔ Manutenção Pendente)
-- Cadastro de novos veículos via modal
+### Frontend (React SPA)
+- **Vite + React + TypeScript** — Arquitetura de compilação ultrarrápida.
+- **React Router DOM** — Navegação instantânea e dinâmica entre as páginas.
+- **Bootstrap 5.3 + Lucide Icons** — Sistema responsivo de grids, modal nativo e ícones modernos.
+- **CSS Customizado** — Tema Escuro (Dark Mode) nativo com efeitos premium de "Glassmorphism" e micro-animações.
 
-## Estrutura do Projeto
+### Backend (Spring Boot REST API)
+- **Java 17+ e Spring Boot 3.4** — Framework robusto para o servidor.
+- **Spring Data JPA & Hibernate** — Abstração de persistência no banco de dados.
+- **PostgreSQL** — Banco de dados relacional definitivo da aplicação.
+- **Spring Security** — Proteção com CORS habilitado e autenticação "Basic Auth" para endpoints protegidos.
+- **Lombok** — Redução de código boilerplate (Getters/Setters).
 
-```
+---
+
+## 📂 Estrutura do Projeto (Monorepo)
+
+```text
 FrotaCONF/
-├── index.html                  → Página principal com Bootstrap via CDN
-├── vite.config.ts              → Configuração do Vite (base para GitHub Pages)
-├── tsconfig.json               → Configuração do TypeScript
-├── package.json                → Dependências e scripts
-├── public/
-│   └── favicon.svg             → Ícone da aplicação
-└── src/
-    ├── main.ts                 → Ponto de entrada, estado e renderização
-    ├── types/
-    │   └── index.ts            → Interfaces e contratos de dados
-    ├── components/
-    │   ├── cabecalho.ts        → Componente de cabeçalho (header)
-    │   ├── barra-lateral.ts    → Componente de filtros (aside)
-    │   ├── area-principal.ts   → Componente que agrupa dashboard + cards (main)
-    │   ├── dashboard.ts        → Componente de contadores (section)
-    │   ├── card-veiculo.ts     → Componente individual de veículo
-    │   ├── formulario-veiculo.ts → Modal de cadastro de veículo
-    │   └── rodape.ts           → Componente de rodapé (footer + address)
-    └── styles/
-        └── custom.css          → Estilos personalizados
+├── backend/                        → Diretório da API (Spring Boot)
+│   ├── src/main/java/.../model/    → Entidades JPA (ex: Veiculo.java)
+│   ├── src/main/java/.../repository/ → Interfaces Spring Data
+│   ├── src/main/java/.../controller/ → Endpoints REST
+│   └── src/main/resources/         → Configurações (application.properties)
+│
+├── src/                            → Diretório do Frontend (React)
+│   ├── components/                 → Componentes de interface (Header, Sidebar, VehicleCard)
+│   ├── pages/                      → Rotas da aplicação (Home.tsx, Frota.tsx)
+│   ├── styles/                     → Estilos do tema escuro (custom.css)
+│   ├── App.tsx                     → Roteamento principal
+│   └── main.tsx                    → Ponto de entrada do React
+│
+├── index.html                      → Template principal (aciona o dark mode)
+└── vite.config.ts                  → Configuração do Vite + React
 ```
 
-## Justificativa da Arquitetura
+---
 
-A divisão em componentes segue o princípio de **responsabilidade única**, onde cada arquivo representa um pedaço isolado da interface:
+## 🔧 Como Executar Localmente
 
-| Componente | Tag semântica | Responsabilidade |
-|------------|---------------|------------------|
-| `cabecalho.ts` | `<header>` | Identidade visual e título do sistema |
-| `barra-lateral.ts` | `<aside>` | Navegação secundária com filtros por status |
-| `area-principal.ts` | `<main>` | Composição do conteúdo central (dashboard + lista) |
-| `dashboard.ts` | `<section>` | Exibição de indicadores numéricos da frota |
-| `card-veiculo.ts` | `<div>` (card) | Representação visual de um veículo individual |
-| `formulario-veiculo.ts` | `<div>` (modal) | Formulário de cadastro de novos veículos |
-| `rodape.ts` | `<footer>` + `<address>` | Identificação do aluno e da disciplina |
+### 1. Requisitos
+- Node.js e NPM instalados.
+- Java 17 (JDK) instalado.
+- Servidor PostgreSQL rodando localmente (porta 5432).
 
-Essa separação foi adotada pelos seguintes motivos:
+### 2. Configurando e Rodando o Backend
+1. Certifique-se que o banco PostgreSQL possui um banco chamado `frotaconf`.
+2. As credenciais padrão da aplicação (`backend/src/main/resources/application.properties`) são usuário: `postgres` e senha: `postgres`.
+3. Pelo terminal, na raiz do projeto:
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+O servidor Spring iniciará na porta `8080`.
 
-1. **Organização**: cada componente fica em seu próprio arquivo, facilitando a localização e manutenção do código.
-2. **Reusabilidade**: componentes como `card-veiculo.ts` são reutilizados para cada veículo da lista, recebendo dados diferentes via props (interfaces TypeScript).
-3. **Tipagem forte**: a pasta `types/` centraliza todas as interfaces (`IVeiculo`, `ICardVeiculoProps`, etc.), garantindo que os dados trafegados entre componentes respeitem contratos bem definidos.
-4. **Separação de responsabilidades**: o `main.ts` gerencia o estado global e a renderização, enquanto os componentes apenas recebem dados e devolvem HTML.
-5. **Semântica HTML**: cada componente utiliza a tag HTML mais adequada (`header`, `aside`, `main`, `section`, `footer`, `address`), melhorando acessibilidade e SEO.
-
-## Tecnologias
-
-- **Vite** — Bundler e dev server
-- **TypeScript** — Tipagem estática
-- **Bootstrap 5.3.3** — Framework CSS via CDN
-
-## Como Executar
-
+### 3. Configurando e Rodando o Frontend
+Em um novo terminal, volte para a raiz do repositório (`FrotaCONF`) e instale as dependências recém-adicionadas:
 ```bash
 npm install
 npm run dev
 ```
+O servidor Vite inciará. Acesse `http://localhost:5173` no seu navegador. A integração com o backend será feita automaticamente utilizando credenciais básicas encapsuladas no React.
 
-## Aluno
+---
 
-**Yuri de Sousa Silva**
-Disciplina: Desenvolvimento de Software Web — Prof. Alexandre Almeida
+**Desenvolvido como projeto acadêmico:**  
+**Aluno:** Yuri de Sousa Silva  
+**Disciplina:** Desenvolvimento de Software Web — Prof. Alexandre Almeida
