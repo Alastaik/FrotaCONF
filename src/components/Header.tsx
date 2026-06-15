@@ -1,8 +1,8 @@
-import React from 'react';
+import type { FC } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Truck } from 'lucide-react';
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   return (
     <header className="glass-header py-3">
       <div className="container d-flex flex-wrap justify-content-center">

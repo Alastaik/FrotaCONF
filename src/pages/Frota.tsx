@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import type { FC, FormEvent } from 'react';
 import Sidebar from '../components/Sidebar';
 import VehicleCard from '../components/VehicleCard';
-import { IVeiculo } from '../types';
+import type { IVeiculo } from '../types';
 import { PlusCircle, RefreshCw } from 'lucide-react';
 
 const API_URL = 'http://localhost:8080/api/veiculos';
@@ -10,7 +11,7 @@ const HEADERS = {
   'Authorization': 'Basic YWRtaW46YWRtaW4='
 };
 
-const Frota: React.FC = () => {
+const Frota: FC = () => {
   const [veiculos, setVeiculos] = useState<IVeiculo[]>([]);
   const [filtroAtual, setFiltroAtual] = useState('Todos');
   const [loading, setLoading] = useState(true);
@@ -59,7 +60,7 @@ const Frota: React.FC = () => {
     }
   };
 
-  const adicionarVeiculo = async (e: React.FormEvent) => {
+  const adicionarVeiculo = async (e: FormEvent) => {
     e.preventDefault();
     if (!placa || !modelo) return;
 

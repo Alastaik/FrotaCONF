@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Filter, ListFilter } from 'lucide-react';
 
 interface SidebarProps {
@@ -6,7 +6,7 @@ interface SidebarProps {
   setFiltro: (filtro: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ filtroAtual, setFiltro }) => {
+const Sidebar: FC<SidebarProps> = ({ filtroAtual, setFiltro }) => {
   const filtros = ['Todos', 'Em Dia', 'Manutenção Pendente'];
 
   return (

@@ -1,8 +1,8 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Clock, Settings, Activity } from 'lucide-react';
+import { ShieldCheck, Settings, Activity } from 'lucide-react';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   return (
     <div className="container py-4">
       <div className="p-5 mb-4 glass-panel rounded-3 text-center">

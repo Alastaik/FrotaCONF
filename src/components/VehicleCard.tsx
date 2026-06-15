@@ -1,13 +1,13 @@
-import React from 'react';
+import type { FC } from 'react';
 import { Car, Wrench, CheckCircle } from 'lucide-react';
-import { IVeiculo } from '../types';
+import type { IVeiculo } from '../types';
 
 interface VehicleCardProps {
   veiculo: IVeiculo;
   onAlterarStatus: (id: number) => void;
 }
 
-const VehicleCard: React.FC<VehicleCardProps> = ({ veiculo, onAlterarStatus }) => {
+const VehicleCard: FC<VehicleCardProps> = ({ veiculo, onAlterarStatus }) => {
   const isEmDia = veiculo.status === 'Em Dia';
 
   return (
