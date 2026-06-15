@@ -7,7 +7,7 @@
 
 ---
 
-## 🚀 Stack Tecnológica
+## Stack
 
 ### Frontend — React + TypeScript + Bootstrap
 
@@ -19,8 +19,6 @@
 | **React Router DOM** | 6 | Roteamento SPA (Single Page Application) |
 | **Lucide React** | — | Ícones SVG como componentes React |
 | **Vite** | 5 | Build tool e servidor de desenvolvimento |
-
-> O Bootstrap é instalado via **npm** e importado no `main.tsx`, não via CDN.
 
 ### Backend — Spring Boot + PostgreSQL
 
@@ -93,9 +91,7 @@ Crie um banco chamado `frotaconf` no PostgreSQL:
 CREATE DATABASE frotaconf;
 ```
 
-> As credenciais padrão configuradas em `application.properties` são:
-> - **Usuário:** `postgres`
-> - **Senha:** `postgres`
+> As credenciais padrão estão configuradas em `application.properties`
 
 ### 2. Iniciar o Backend
 
@@ -120,7 +116,7 @@ npm run dev
 
 ---
 
-## 🔑 Autenticação
+## Autenticação
 
 A API usa **Basic Auth**. As credenciais padrão de desenvolvimento são:
 
@@ -132,7 +128,7 @@ O frontend já envia as credenciais automaticamente nas requisições à API.
 
 ---
 
-## 📡 Endpoints da API
+## Endpoints da API
 
 | Método | Rota | Descrição |
 |---|---|---|
@@ -142,7 +138,7 @@ O frontend já envia as credenciais automaticamente nas requisições à API.
 
 ---
 
-## 🎨 Recursos do Bootstrap Utilizados
+## Recursos do Bootstrap Utilizados
 
 | Recurso | Onde é usado |
 |---|---|
@@ -157,7 +153,7 @@ O frontend já envia as credenciais automaticamente nas requisições à API.
 
 ---
 
-## 📝 Licença
+## Licença
 
 Projeto acadêmico — uso educacional.
 
